@@ -38,15 +38,20 @@ const ahorcado = async () => {
     palabra.append(contenedorLetra);
   }
   const cajas = document.querySelectorAll(".letraPalabra");
-  const cajasComprobar = cajas[(1, cajas.length - 1)];
+  let stringComprobar = "";
   letraAhorcado.addEventListener("keypress", (e) => {
+    console.log(stringComprobar);
+    const cajasComprobar = cajas[(1, cajas.length - 1)];
     if (palabraJuego.includes(letraAhorcado.value) && e.key === "Enter") {
+      for (const valor of cajas) {
+        stringComprobar += valor.textContent;
+      }
       for (const [i, v] of palabraSeparada.entries()) {
         if (letraAhorcado.value === v) {
           cajas[i + 1].textContent = palabraSeparada[i];
           console.log(i, v);
         }
-        if (!cajas[i + 1].textContent === " ") {
+        if (stringComprobar === palabraJuego) {
           alert("ganasteeee wiii");
         }
       }
@@ -60,6 +65,7 @@ const ahorcado = async () => {
         alert("LOSER");
       }
     }
+    stringComprobar = "";
   });
 };
 ahorcado();
