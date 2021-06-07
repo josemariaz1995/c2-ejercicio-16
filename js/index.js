@@ -2,7 +2,6 @@ const letraAhorcado = document.querySelector("#letra");
 const palabraEntera = document.querySelector("#palabra");
 const ahorcadoMuñeco = document.querySelectorAll("#hangman > *");
 let i = 9;
-let letraContenedor = "";
 const palabra = document.querySelector(".palabra");
 
 const palabraAleatoria = (array) => {
@@ -33,10 +32,12 @@ const ahorcado = async () => {
     const moldeLetras = palabra.cloneNode(true);
     const contenedorLetra = moldeLetras.querySelector(".letraPalabra");
     contenedorLetra.classList.remove("molde");
-    letraAhorcado.addEventListener("keypress", (e) => {});
-    if (letraAhorcado.value === letra && e.key === "Enter") {
-      contenedorLetra.textContent = letra;
-    }
+    letraAhorcado.addEventListener("keypress", (e) => {
+      if (letraAhorcado.value === letra && e.key === "Enter") {
+        contenedorLetra.textContent = letra;
+      }
+    });
+
     palabra.append(contenedorLetra);
   }
 };
